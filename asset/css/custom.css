@@ -1,0 +1,437 @@
+/* Navbar styling */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+.navbar {
+  padding: 0.5rem 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-right: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-nav .nav-link.active {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.75rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Custom card styling */
+.card {
+  /* Allow cards to be responsive inside Bootstrap columns
+     (remove fixed min/max width that caused images to stretch) */
+  max-width: 100%;
+  margin: 0 auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.card img {
+  /* Keep images responsive and maintain aspect ratio
+     Remove fixed height so images aren't forced/stretched. */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Image styling for clarity */
+img {
+  /* Allow images to scale to their container by default */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rounded {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Center card rows */
+.row.justify-content-center {
+  justify-content: center;
+}
+
+/* Center main content */
+main {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+section {
+  margin: 0 auto;
+  padding: 0;
+  /* Each section should appear as a full-screen block when navigated to.
+     Use a CSS variable `--nav-height` (set by JS) to subtract header height
+     so the section fits the remaining viewport. `scroll-margin-top` makes
+     anchor jumps land below the header. */
+  min-height: calc(100vh - var(--nav-height, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-margin-top: var(--nav-height, 0px);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Animation variables and accessibility */
+:root {
+  --anim-speed: 240ms;
+  --anim-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Slide in animations */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.slide-in-left.animate-in {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.slide-in-right.animate-in {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-top {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.slide-in-top.animate-in {
+  animation: slideInFromTop 0.8s ease-out forwards;
+}
+
+.slide-in-bottom {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.slide-in-bottom.animate-in {
+  animation: slideInFromBottom 0.8s ease-out forwards;
+}
+
+/* Footer responsive adjustments for mobile */
+footer .container-fluid {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+footer .row {
+  align-items: center;
+}
+
+footer .col-md-4 {
+  padding: 0.5rem 1rem;
+}
+
+/* On small screens, stack footer columns and center text/content */
+@media (max-width: 576px) {
+  footer .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center !important;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Make back-to-top icon slightly larger and easier to tap */
+  footer .bi-arrow-up {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Increase spacing and reduce font-size for better fit */
+  footer p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+  }
+
+  /* Ensure links/buttons in footer are full-width and touch-friendly if needed */
+  footer .btn {
+    display: inline-block;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  /* Make navbar WhatsApp button full-width on small screens */
+  .btn-whatsapp {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0.35rem 0;
+  }
+}
+
+/* Small improvement: ensure footer contrasts and spacing on dark background */
+footer {
+  background: transparent; /* uses parent container-fluid bg-dark */
+}
+
+/* Nav link hover: subtle lift + animated underline */
+.nav-link {
+  position: relative;
+  transition: color var(--anim-speed) var(--anim-ease),
+    transform var(--anim-speed) var(--anim-ease);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 3px;
+  width: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 3px;
+  transition: width var(--anim-speed) var(--anim-ease);
+}
+.nav-link:hover,
+.nav-link:focus {
+  transform: translateY(-3px);
+  color: #fff;
+}
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+}
+
+/* Buttons: lift and deeper shadow on hover */
+.btn {
+  transition: transform var(--anim-speed) var(--anim-ease),
+    box-shadow var(--anim-speed) var(--anim-ease);
+  will-change: transform;
+}
+.btn:hover,
+.btn:focus {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Cards: gentle raise and image zoom */
+.card {
+  transition: transform var(--anim-speed) var(--anim-ease),
+    box-shadow var(--anim-speed) var(--anim-ease);
+  will-change: transform;
+}
+.card:hover,
+.card:focus-within {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.card img,
+.card .card-img-top,
+.gallery-item img,
+img {
+  transition: transform 360ms var(--anim-ease), filter 240ms var(--anim-ease);
+}
+.card:hover img,
+.card:focus-within img {
+  transform: scale(1.04);
+  filter: brightness(0.98);
+}
+
+/* Gallery items: image scale + shadow */
+.gallery-item {
+  transition: transform var(--anim-speed) var(--anim-ease),
+    box-shadow var(--anim-speed) var(--anim-ease);
+}
+.gallery-item img.object-fit-cover {
+  object-fit: cover;
+}
+.gallery-item:hover,
+.gallery-item:focus {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.gallery-item:hover img,
+.gallery-item:focus img {
+  transform: scale(1.06);
+}
+
+/* Small accessibility/focus helpers */
+.nav-link:focus,
+.btn:focus,
+.card:focus-within,
+.gallery-item:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.06);
+  outline-offset: 3px;
+}
+
+/* Gallery Modal styling */
+.modal-body {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+#modalImage {
+  max-width: 100%;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  animation: fadeIn 300ms var(--anim-ease);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Global image transform animation - modern and subtle */
+img,
+.card img,
+.card .card-img-top,
+.gallery-item img,
+.img-fluid {
+  transition: transform 360ms var(--anim-ease), filter 240ms var(--anim-ease),
+    box-shadow 240ms var(--anim-ease);
+  will-change: transform, filter;
+  transform-origin: center center;
+  backface-visibility: hidden;
+}
+
+/* Hover / focus (non-touch) */
+@media (hover: hover) and (pointer: fine) {
+  img:hover,
+  img:focus,
+  .card:hover img,
+  .card:focus-within img,
+  .gallery-item:hover img,
+  .gallery-item:focus img {
+    transform: translateY(-6px) scale(1.04) rotate(-0.25deg);
+    filter: brightness(0.98) saturate(1.03);
+  }
+
+  /* Slightly stronger effect for gallery thumbnails */
+  .gallery-item:hover img,
+  .gallery-item:focus img {
+    transform: translateY(-8px) scale(1.08) rotate(-0.35deg);
+  }
+}
+
+/* Touch / small devices: use active state instead of hover */
+@media (hover: none) {
+  img:active,
+  .gallery-item:active img {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  img,
+  .card img,
+  .gallery-item img,
+  .img-fluid {
+    transition: none;
+    transform: none !important;
+  }
+}
