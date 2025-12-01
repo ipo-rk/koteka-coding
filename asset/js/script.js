@@ -68,6 +68,76 @@
     } else {
         initGalleryHandlers();
     }
+
+    // Improved focus management for modal to prevent aria-hidden warnings
+    function setupModalFocusManagement() {
+        var galleryModal = document.getElementById('galleryModal');
+        if (!galleryModal) return;
+
+        // Store the element that triggered the modal
+        var modalTrigger = null;
+
+        // Listen for modal show event
+        galleryModal.addEventListener('show.bs.modal', function () {
+            // Store the currently focused element before modal opens
+            modalTrigger = document.activeElement;
+            // Force focus to modal content after a brief delay
+            setTimeout(function () {
+                var firstFocusable = galleryModal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (firstFocusable) {
+                    firstFocusable.focus();
+                }
+            }, 100);
+        });
+
+        // Listen for modal hide event
+        galleryModal.addEventListener('hide.bs.modal', function () {
+            // Return focus to the trigger element when modal closes
+            if (modalTrigger) {
+                setTimeout(function () {
+                    if (modalTrigger && modalTrigger.focus) {
+                        modalTrigger.focus();
+                    }
+                }, 100);
+            }
+        });
+
+        // Trap focus within modal while it's open
+        galleryModal.addEventListener('keydown', function (e) {
+            if (e.key !== 'Tab') return;
+
+            var focusableElements = Array.from(galleryModal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            ));
+
+            if (focusableElements.length === 0) return;
+
+            var firstElement = focusableElements[0];
+            var lastElement = focusableElements[focusableElements.length - 1];
+            var activeElement = document.activeElement;
+
+            if (e.shiftKey) {
+                // Shift + Tab
+                if (activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                }
+            } else {
+                // Tab
+                if (activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupModalFocusManagement);
+    } else {
+        setupModalFocusManagement();
+    }
+
 })();
 
 // Intersection Observer untuk animasi scroll - dapat diulang setiap kali scroll
@@ -105,6 +175,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         var navbarCollapse = document.getElementById('navbarNav');
         if (!navbarCollapse) return;
+
         // Create or get a Collapse instance
         var bsCollapse = null;
         if (window.bootstrap && bootstrap.Collapse) {
@@ -136,4 +207,89 @@
             });
         });
     });
+})();
+
+// ============================================================
+// PERFORMANCE OPTIMIZATION - Passive Event Listeners
+// ============================================================
+(function () {
+    // Enable passive event listeners for touch events on maps and interactive elements
+    function enablePassiveEventListeners() {
+        var supportsPassive = false;
+        try {
+            var opts = Object.defineProperty({}, 'passive', {
+                get: function () {
+                    supportsPassive = true;
+                }
+            });
+            window.addEventListener('test', null, opts);
+            window.removeEventListener('test', null, opts);
+        } catch (err) {
+            supportsPassive = false;
+        }
+
+        if (!supportsPassive) return;
+
+        // Apply passive listeners to map iframe and other touch-interactive elements
+        var touchElements = document.querySelectorAll('iframe, .contact-map, .gallery-item');
+        touchElements.forEach(function (el) {
+            if (el.addEventListener) {
+                ['touchstart', 'touchmove', 'touchend', 'wheel'].forEach(function (eventName) {
+                    el.addEventListener(eventName, function () { }, { passive: true });
+                });
+            }
+        });
+
+        // Also for document-level touch events
+        ['touchstart', 'touchmove', 'touchend'].forEach(function (eventName) {
+            document.addEventListener(eventName, function () { }, { passive: true });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enablePassiveEventListeners);
+    } else {
+        enablePassiveEventListeners();
+    }
+})();
+
+// ============================================================
+// LAZY LOAD OPTIMIZATION FOR MAPS
+// ============================================================
+(function () {
+    // Defer Google Maps initialization until user interacts with it
+    var mapsInitialized = false;
+
+    function initializeMapsOnDemand() {
+        if (mapsInitialized) return;
+        mapsInitialized = true;
+
+        var mapIframes = document.querySelectorAll('iframe[src*="maps.google.com"]');
+        mapIframes.forEach(function (iframe) {
+            // Force re-initialization if needed
+            if (iframe.src) {
+                iframe.style.visibility = 'visible';
+            }
+        });
+    }
+
+    // Initialize maps when user scrolls near them
+    if ('IntersectionObserver' in window) {
+        var mapObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    initializeMapsOnDemand();
+                    mapObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        var contactMaps = document.querySelectorAll('.contact-map');
+        contactMaps.forEach(function (el) {
+            mapObserver.observe(el);
+        });
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        window.addEventListener('scroll', initializeMapsOnDemand);
+    }
 })();

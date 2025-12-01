@@ -41,6 +41,19 @@ header {
   outline: 2px solid rgba(255, 255, 255, 0.5);
 }
 
+/* NAVBAR MOBILE HIDE - Menu tersembunyi di mobile sampai toggle diklik */
+@media (max-width: 991px) {
+  /* Default: navbar menu tersembunyi */
+  .navbar-collapse {
+    display: none !important;
+  }
+
+  /* Saat toggle diklik dan class "show" ditambahkan, navbar muncul */
+  .navbar-collapse.show {
+    display: block !important;
+  }
+}
+
 /* Custom card styling */
 .card {
   /* Allow cards to be responsive inside Bootstrap columns
@@ -210,60 +223,191 @@ section {
   animation: slideInFromBottom 0.8s ease-out forwards;
 }
 
-/* Footer responsive adjustments for mobile */
+/* ============================================================
+   FOOTER STYLING
+   ============================================================ */
+footer {
+  background: transparent;
+  margin-top: auto;
+}
+
 footer .container-fluid {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 2rem 1rem;
 }
 
 footer .row {
   align-items: center;
+  justify-content: center;
 }
 
 footer .col-md-4 {
   padding: 0.5rem 1rem;
+  flex: 1 1 33.333%;
 }
 
-/* On small screens, stack footer columns and center text/content */
-@media (max-width: 576px) {
+footer p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+footer .bi-arrow-up {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+footer .bi-arrow-up:hover {
+  color: #20c997 !important;
+  transform: translateY(-3px) scale(1.1);
+}
+
+/* ============================================================
+   FOOTER - MOBILE (< 576px)
+   ============================================================ */
+@media (max-width: 575.98px) {
+  footer .container-fluid {
+    padding: 1.5rem 1rem;
+  }
+
+  footer .row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   footer .col-md-4 {
     flex: 0 0 100%;
     max-width: 100%;
-    text-align: center !important;
-    margin-bottom: 0.75rem;
+    text-align: center;
+    padding: 0.5rem 0;
   }
 
-  /* Make back-to-top icon slightly larger and easier to tap */
-  footer .bi-arrow-up {
-    width: 40px;
-    height: 40px;
-  }
-
-  /* Increase spacing and reduce font-size for better fit */
   footer p {
+    font-size: 0.9rem;
     margin: 0.25rem 0;
-    font-size: 0.95rem;
   }
 
-  /* Ensure links/buttons in footer are full-width and touch-friendly if needed */
-  footer .btn {
+  footer .bi-arrow-up {
+    width: 28px;
+    height: 28px;
+  }
+
+  footer a {
     display: inline-block;
-    padding: 0.45rem 0.75rem;
-    font-size: 0.95rem;
   }
 
-  /* Make navbar WhatsApp button full-width on small screens */
   .btn-whatsapp {
     display: block;
     width: 100%;
     text-align: center;
-    margin: 0.35rem 0;
+    margin: 0.5rem 0 !important;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem !important;
   }
 }
 
-/* Small improvement: ensure footer contrasts and spacing on dark background */
-footer {
-  background: transparent; /* uses parent container-fluid bg-dark */
+/* ============================================================
+   FOOTER - TABLET SMALL (576px - 768px)
+   ============================================================ */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  footer .container-fluid {
+    padding: 1.75rem 1rem;
+  }
+
+  footer .col-md-4 {
+    flex: 0 0 50%;
+    padding: 0.75rem;
+  }
+
+  footer .col-md-4:last-child {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  footer p {
+    font-size: 0.95rem;
+  }
+
+  footer .bi-arrow-up {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ============================================================
+   FOOTER - TABLET LARGE (768px - 992px)
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  footer .container-fluid {
+    padding: 2rem 1.5rem;
+  }
+
+  footer .col-md-4 {
+    flex: 1 1 auto;
+    padding: 1rem;
+  }
+
+  footer .col-md-4:first-child {
+    text-align: left;
+  }
+
+  footer .col-md-4:nth-child(2) {
+    text-align: center;
+  }
+
+  footer .col-md-4:last-child {
+    text-align: right;
+  }
+
+  footer p {
+    font-size: 0.95rem;
+  }
+
+  footer .bi-arrow-up {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ============================================================
+   FOOTER - DESKTOP (>= 992px)
+   ============================================================ */
+@media (min-width: 992px) {
+  footer .container-fluid {
+    padding: 2rem 2rem;
+  }
+
+  footer .row {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  footer .col-md-4 {
+    flex: 1 1 auto;
+    padding: 1rem 1.5rem;
+  }
+
+  footer .col-md-4:first-child {
+    text-align: left;
+  }
+
+  footer .col-md-4:nth-child(2) {
+    text-align: center;
+  }
+
+  footer .col-md-4:last-child {
+    text-align: right;
+    padding-right: 2rem;
+  }
+
+  footer p {
+    font-size: 1rem;
+  }
+
+  footer .bi-arrow-up {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 /* Nav link hover: subtle lift + animated underline */
@@ -433,5 +577,732 @@ img,
   .img-fluid {
     transition: none;
     transform: none !important;
+  }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE IMPROVEMENTS (Extra Small Devices)
+   ============================================================ */
+
+/* Extra small devices: 320px - 576px */
+@media (max-width: 575.98px) {
+  /* Header and Navbar adjustments */
+  header {
+    padding: 0.5rem !important;
+  }
+
+  body {
+    padding-top: 65px;
+    font-size: 14px;
+  }
+
+  .navbar {
+    padding: 0.25rem 0;
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .navbar-brand img {
+    max-width: 50px !important;
+  }
+
+  .navbar-nav {
+    padding-top: 0.5rem;
+    flex-direction: column;
+  }
+
+  .navbar-nav .nav-item {
+    padding: 0.25rem 0;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.6rem 0.5rem !important;
+    font-size: 0.9rem;
+    margin: 0.2rem 0 !important;
+    display: block;
+    text-align: right;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus {
+    background-color: rgba(32, 201, 151, 0.1);
+    color: #20c997 !important;
+  }
+
+  .btn-whatsapp {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0 !important;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem !important;
+    border-radius: 0.35rem;
+  }
+
+  /* Home section adjustments */
+  #home .container {
+    padding: 0 1rem;
+  }
+
+  #home .row {
+    margin-left: -0.5rem !important;
+    margin-right: -0.5rem !important;
+  }
+
+  #home h2 {
+    font-size: 1.75rem !important;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  #home p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  #home .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  #home .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #home .offset-md-2 {
+    margin-left: 0 !important;
+  }
+
+  #home .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem !important;
+    width: 100%;
+  }
+
+  /* About section adjustments */
+  #about .container {
+    padding: 0 1rem;
+  }
+
+  #about h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 2rem;
+  }
+
+  #about .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  #about .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 !important;
+  }
+
+  #about p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  /* Skills section adjustments */
+  #skills .container {
+    padding: 0 1rem;
+  }
+
+  #skills h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 2rem;
+  }
+
+  .skills-left-col,
+  .skills-right-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 !important;
+    margin-bottom: 2rem;
+  }
+
+  .skills-left-col p,
+  .skills-right-col p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-img-container {
+    height: 100px !important;
+  }
+
+  .skill-card .progress {
+    height: 5px;
+  }
+
+  /* Projects section adjustments */
+  #my-prototype .container {
+    padding: 0 1rem;
+  }
+
+  #my-prototype h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  /* Gallery section adjustments */
+  #gallery .container {
+    padding: 0 1rem;
+  }
+
+  #gallery h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery-item {
+    margin-bottom: 1rem;
+  }
+
+  .gallery-item img {
+    height: 200px !important;
+  }
+
+  /* Contact section adjustments */
+  #contact .container {
+    padding: 0 1rem;
+  }
+
+  #contact h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem !important;
+  }
+
+  .row.bg-secondary {
+    padding: 1.5rem 1rem !important;
+    margin: 1rem 0 !important;
+  }
+
+  #contact .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  #contact form {
+    width: 100%;
+  }
+
+  #contact .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  #contact .form-control,
+  #contact textarea {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  #contact .btn {
+    font-size: 0.95rem;
+    padding: 0.5rem 1.5rem;
+    width: 100%;
+  }
+
+  #contact iframe {
+    height: 300px !important;
+  }
+
+  /* Modal adjustments */
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+    min-height: 300px;
+  }
+
+  #modalImage {
+    max-height: 400px;
+  }
+
+  /* Section padding adjustments */
+  section {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    min-height: auto;
+  }
+
+  /* Container adjustments */
+  .container {
+    max-width: 100% !important;
+    padding: 0 0.75rem;
+  }
+
+  /* Row and column adjustments */
+  .row {
+    margin-left: -0.5rem !important;
+    margin-right: -0.5rem !important;
+  }
+
+  [class*="col-"] {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Text sizing adjustments */
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  /* Button sizing */
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.45rem 1rem;
+  }
+
+  /* Disable animations on mobile for better performance */
+  .slide-in-left,
+  .slide-in-right,
+  .slide-in-top,
+  .slide-in-bottom {
+    transform: none !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* Small devices: 576px - 768px */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  header {
+    padding: 0.75rem !important;
+  }
+
+  body {
+    padding-top: 75px;
+    font-size: 15px;
+  }
+
+  .navbar-brand {
+    font-size: 1.35rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.55rem 0.6rem !important;
+    font-size: 0.95rem;
+  }
+
+  #home h2,
+  #about h2,
+  #my-prototype h2,
+  #gallery h2,
+  #contact h2 {
+    font-size: 1.75rem !important;
+  }
+
+  #home .col-md-6,
+  #home .col-md-4,
+  #about .col-md-4,
+  #about .col-md-6,
+  #contact .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #home .offset-md-2,
+  #contact .col-md-6 {
+    margin-left: 0 !important;
+  }
+
+  section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .btn-whatsapp {
+    font-size: 0.9rem;
+    padding: 0.45rem 1rem !important;
+  }
+
+  #contact iframe {
+    height: 350px !important;
+  }
+
+  #skills h2 {
+    font-size: 1.75rem !important;
+  }
+
+  .skill-img-container {
+    height: 110px !important;
+  }
+
+  .skill-card .progress {
+    height: 5px;
+  }
+}
+
+/* Medium devices: 768px - 992px */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  header {
+    padding: 0.75rem 1rem !important;
+  }
+
+  body {
+    padding-top: 85px;
+    font-size: 15px;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.6rem 0.75rem !important;
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .btn-whatsapp {
+    font-size: 0.95rem;
+    padding: 0.5rem 1.25rem !important;
+  }
+
+  #contact .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  #contact iframe {
+    height: 400px !important;
+  }
+
+  #skills h2 {
+    font-size: 1.9rem !important;
+  }
+
+  .skill-img-container {
+    height: 120px !important;
+  }
+
+  .skill-card .progress {
+    height: 6px;
+  }
+
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  }
+
+  .gallery-item:hover,
+  .gallery-item:focus {
+    transform: none;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gallery-item:hover img,
+  .gallery-item:focus img {
+    transform: scale(1.03);
+  }
+}
+
+/* ============================================================
+   DESKTOP (>= 992px)
+   ============================================================ */
+@media (min-width: 992px) {
+  header {
+    padding: 0.75rem 1.5rem !important;
+  }
+
+  body {
+    padding-top: 90px;
+    font-size: 16px;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.6rem 1rem !important;
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 2.25rem !important;
+    margin-bottom: 2.5rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .btn-whatsapp {
+    font-size: 1rem;
+    padding: 0.55rem 1.5rem !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  #contact .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  #contact iframe {
+    height: 450px !important;
+  }
+
+  #skills h2 {
+    font-size: 2.25rem !important;
+  }
+
+  .skill-img-container {
+    height: 140px !important;
+  }
+
+  .skill-card .progress {
+    height: 6px;
+  }
+
+  .card {
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gallery-item {
+    transition: all 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.06) rotate(-1deg);
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY & MODAL IMPROVEMENTS
+   ============================================================ */
+
+/* Ensure modal buttons maintain proper focus management */
+.modal .btn-close {
+  position: relative;
+  z-index: 1031;
+}
+
+/* Improve modal visibility and focus states */
+.modal-backdrop {
+  z-index: 1030;
+}
+
+.modal {
+  z-index: 1031;
+}
+
+/* Ensure focus is visible in modal */
+.modal .btn-close:focus,
+.modal button:focus,
+.modal input:focus,
+.modal textarea:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+/* Modal scrolling prevention on body while modal open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Ensure keyboard navigation works properly in modals */
+.modal:not(.modal-static) .close:focus,
+.modal:not(.modal-static) .btn-close:focus {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Better contrast for modal close button */
+.modal-header .btn-close {
+  opacity: 0.8;
+}
+
+.modal-header .btn-close:hover,
+.modal-header .btn-close:focus {
+  opacity: 1;
+}
+
+/* Image in modal should be responsive */
+.modal-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive iframe container */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Direct iframe styling for maps */
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   SKILLS SECTION STYLING
+   ============================================================ */
+
+.skill-card {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.skill-img-container {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.skill-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.skill-card:hover .skill-img {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.skill-card .progress {
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-card .progress-bar {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  transition: width 0.6s ease;
+}
+
+.skill-card:hover .progress-bar {
+  background: linear-gradient(90deg, #20c997 0%, #17a2b8 100%);
+}
+
+/* Mobile responsive iframe height */
+@media (max-width: 768px) {
+  iframe {
+    height: 300px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  iframe {
+    height: 450px !important;
+  }
+}
+
+/* ============================================================
+   GOOGLE MAPS OPTIMIZATION
+   ============================================================ */
+
+/* Optimize iframe for touch interactions */
+iframe {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+}
+
+/* Prevent touch delay on mapped elements */
+.contact-map {
+  touch-action: pan-x pan-y;
+}
+
+/* Better performance for maps on mobile */
+@media (max-width: 768px) {
+  iframe {
+    touch-action: pan-x pan-y pinch-zoom;
   }
 }
