@@ -4,13 +4,13 @@
 (function () {
     // CV Data - Customize this with your actual information
     const cvData = {
-        name: "Your Name",
+        name: "Devp Rick11",
         title: "Full Stack Developer",
-        email: "your.email@example.com",
+        email: "rizaldoricky@gmail.com",
         phone: "+62 812 1537 6865",
-        location: "Indonesia",
+        location: "Papua Tengah, Indonesia",
         about: "Passionate full-stack developer with expertise in modern web technologies. Dedicated to creating beautiful, functional, and user-friendly web applications.",
-        
+
         skills: {
             coding: [
                 { name: "HTML", level: 90 },
@@ -25,11 +25,11 @@
                 { name: "Adobe Illustrator", level: 85 },
                 { name: "Canva", level: 80 },
                 { name: "Lightroom", level: 85 },
-                { name: "AE", level: 75 },
+                { name: "After Effects", level: 75 },
                 { name: "Capcut", level: 80 }
             ]
         },
-        
+
         experience: [
             {
                 title: "Senior Web Developer",
@@ -50,7 +50,7 @@
                 description: "Assisted in building web solutions and learning modern development practices."
             }
         ],
-        
+
         education: [
             {
                 degree: "Bachelor of Computer Science",
@@ -63,7 +63,7 @@
                 year: "2017"
             }
         ],
-        
+
         projects: [
             {
                 name: "E-Commerce Platform",
@@ -361,7 +361,7 @@
         modal.tabIndex = '-1';
         modal.setAttribute('aria-labelledby', 'cvModalLabel');
         modal.setAttribute('aria-hidden', 'true');
-        
+
         modal.innerHTML = `
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -386,7 +386,7 @@
         `;
 
         document.body.appendChild(modal);
-        
+
         // Show modal
         const bsModal = new bootstrap.Modal(modal);
         bsModal.show();
