@@ -222,22 +222,37 @@
     }
 })();
 
-// Auto-collapse Bootstrap navbar on nav-link or button click (mobile UX)
+// ============================================================
+// NAVBAR COLLAPSE MANAGEMENT - Ensure hidden on load, only show on toggle
+// ============================================================
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
         var navbarCollapse = document.getElementById('navbarNav');
+        var navbarToggler = document.querySelector('.navbar-toggler');
+        
         if (!navbarCollapse) return;
+
+        // Ensure navbar collapse is hidden on page load
+        navbarCollapse.classList.remove('show');
 
         // Create or get a Collapse instance
         var bsCollapse = null;
         if (window.bootstrap && bootstrap.Collapse) {
             if (typeof bootstrap.Collapse.getOrCreateInstance === 'function') {
-                bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+                bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse, { toggle: false });
             } else {
                 // fallback for older builds
                 bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
             }
         }
+
+        // Navbar collapse visibility on window resize
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 991) {
+                // On desktop, ensure collapse is visible
+                navbarCollapse.classList.remove('show');
+            }
+        });
 
         // When any nav link is clicked, hide the navbar if it's open and set as active
         var navLinks = document.querySelectorAll('#navbarNav .nav-link');
