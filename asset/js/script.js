@@ -229,7 +229,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         var navbarCollapse = document.getElementById('navbarNav');
         var navbarToggler = document.querySelector('.navbar-toggler');
-        
+
         if (!navbarCollapse) return;
 
         // Ensure navbar collapse is hidden on page load
