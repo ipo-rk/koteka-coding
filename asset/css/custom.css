@@ -29,7 +29,7 @@ header:hover {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  background: linear-gradient(135deg, #a77228 20%, #3e3415 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -66,13 +66,18 @@ header:hover {
 }
 
 .navbar-nav .nav-link::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.5s ease;
   z-index: -1;
 }
@@ -83,16 +88,16 @@ header:hover {
 
 .navbar-nav .nav-link:hover {
   color: rgba(255, 255, 255, 1) !important;
-  background: rgba(40, 167, 69, 0.2);
+  background: rgba(215, 156, 53, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 4px 12px rgba(167, 129, 40, 0.3);
 }
 
 .navbar-nav .nav-link.active {
   color: rgba(255, 255, 255, 1) !important;
-  background: rgba(40, 167, 69, 0.3);
-  border-bottom: 2px solid #28a745;
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  background: rgba(212, 150, 44, 0.3);
+  border-bottom: 2px solid #a77228;
+  box-shadow: 0 4px 12px rgba(167, 129, 40, 0.3);
   animation: activeNavPulse 0.5s ease;
 }
 
@@ -121,7 +126,7 @@ header:hover {
 }
 
 .btn-whatsapp::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -177,9 +182,16 @@ header:hover {
     font-size: 1.25rem;
   }
 
-  /* Default: navbar menu tersembunyi */
+  /* CRITICAL: Ensure navbar collapse is ALWAYS hidden by default on mobile */
   .navbar-collapse {
     display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* ONLY show when .show class is explicitly added by Bootstrap */
+  .navbar-collapse.show {
+    display: block !important;
+    visibility: visible !important;
     position: absolute;
     top: 100%;
     left: 0;
@@ -191,11 +203,6 @@ header:hover {
     padding: 1rem 0;
     border-radius: 0 0 12px 12px;
     animation: slideDown 0.3s ease;
-  }
-
-  /* Saat toggle diklik dan class "show" ditambahkan, navbar muncul */
-  .navbar-collapse.show {
-    display: block !important;
   }
 
   .navbar-nav {
