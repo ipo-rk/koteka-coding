@@ -1,4 +1,6 @@
-/* Navbar styling */
+/* ============================================================
+   MODERN NAVBAR STYLING - Glassmorphism Effect
+   ============================================================ */
 header {
   position: fixed;
   top: 0;
@@ -6,51 +8,251 @@ header {
   right: 0;
   width: 100%;
   z-index: 1030;
+  background: rgba(13, 13, 13, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+header:hover {
+  background: rgba(13, 13, 13, 0.85);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
 }
 
 .navbar {
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
+  transition: padding 0.3s ease;
 }
 
 .navbar-brand {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: rotate(5deg) scale(1.1);
+}
+
+.navbar-nav {
+  gap: 0.5rem;
 }
 
 .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.8) !important;
-  margin-right: 0.5rem;
-  transition: color 0.3s ease;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.navbar-nav .nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.navbar-nav .nav-link:hover::before {
+  left: 100%;
 }
 
 .navbar-nav .nav-link:hover {
   color: rgba(255, 255, 255, 1) !important;
+  background: rgba(40, 167, 69, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 .navbar-nav .nav-link.active {
   color: rgba(255, 255, 255, 1) !important;
+  background: rgba(40, 167, 69, 0.3);
+  border-bottom: 2px solid #28a745;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  animation: activeNavPulse 0.5s ease;
+}
+
+@keyframes activeNavPulse {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+  padding: 0.5rem 1.25rem !important;
+  border: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.btn-whatsapp:hover::before {
+  left: 100%;
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+  color: white !important;
 }
 
 .navbar-toggler {
-  border: none;
-  padding: 0.25rem 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .navbar-toggler:focus {
-  box-shadow: none;
-  outline: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.5);
+  outline: none;
+  border-color: rgba(40, 167, 69, 0.6);
 }
 
-/* NAVBAR MOBILE HIDE - Menu tersembunyi di mobile sampai toggle diklik */
+.navbar-toggler:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-size: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* NAVBAR MOBILE RESPONSIVE */
 @media (max-width: 991px) {
+  .navbar {
+    padding: 0.5rem 0;
+  }
+
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+
   /* Default: navbar menu tersembunyi */
   .navbar-collapse {
     display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0.5rem;
+    padding: 1rem 0;
+    border-radius: 0 0 12px 12px;
+    animation: slideDown 0.3s ease;
   }
 
   /* Saat toggle diklik dan class "show" ditambahkan, navbar muncul */
   .navbar-collapse.show {
     display: block !important;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 0;
+    margin: 0 !important;
+  }
+
+  .navbar-nav .nav-link:hover {
+    background: rgba(40, 167, 69, 0.15);
+    border-left: 4px solid #28a745;
+    padding-left: calc(1.5rem - 4px) !important;
+  }
+
+  .navbar-nav .nav-link.active {
+    background: rgba(40, 167, 69, 0.2);
+    border-left: 4px solid #28a745;
+    padding-left: calc(1.5rem - 4px) !important;
+    border-bottom: none;
+    box-shadow: inset 4px 0 0 rgba(40, 167, 69, 0.5);
+  }
+
+  .btn-whatsapp {
+    width: 90%;
+    margin: 1rem auto 0.5rem;
+  }
+}
+
+/* Animation untuk mobile menu slide down */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex !important;
+  }
+
+  .navbar-nav {
+    align-items: center;
+  }
+
+  .btn-whatsapp {
+    margin-left: 1rem;
   }
 }
 
@@ -136,8 +338,11 @@ section {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
+  *,
+  .slide-in-left,
+  .slide-in-right,
+  .slide-in-top,
+  .slide-in-bottom {
     animation: none !important;
   }
 }
@@ -166,60 +371,18 @@ section {
 }
 
 .slide-in-left {
-  opacity: 0;
-  transform: translateX(-100px);
-}
-
-.slide-in-left.animate-in {
   animation: slideInFromLeft 0.8s ease-out forwards;
 }
 
 .slide-in-right {
-  opacity: 0;
-  transform: translateX(100px);
-}
-
-.slide-in-right.animate-in {
   animation: slideInFromRight 0.8s ease-out forwards;
 }
 
-@keyframes slideInFromTop {
-  from {
-    opacity: 0;
-    transform: translateY(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .slide-in-top {
-  opacity: 0;
-  transform: translateY(-100px);
-}
-
-.slide-in-top.animate-in {
   animation: slideInFromTop 0.8s ease-out forwards;
 }
 
 .slide-in-bottom {
-  opacity: 0;
-  transform: translateY(100px);
-}
-
-.slide-in-bottom.animate-in {
   animation: slideInFromBottom 0.8s ease-out forwards;
 }
 
