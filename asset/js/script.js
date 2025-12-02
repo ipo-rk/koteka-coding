@@ -170,6 +170,58 @@
     }
 })();
 
+// ============================================================
+// ACTIVE NAVIGATION LINK HIGHLIGHTING
+// ============================================================
+(function () {
+    var currentSection = 'home';
+
+    // Function to activate nav link based on section ID
+    function activateNavLink() {
+        var sections = document.querySelectorAll('section[id]');
+        var navLinks = document.querySelectorAll('#navbarNav .nav-link');
+
+        sections.forEach(function (section) {
+            var sectionTop = section.offsetTop;
+            var sectionHeight = section.clientHeight;
+            var sectionBottom = sectionTop + sectionHeight;
+            var scrollPosition = window.scrollY + 150;
+
+            // Check if current scroll position is within this section
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        // Update active class on nav links
+        navLinks.forEach(function (link) {
+            link.classList.remove('active');
+            var href = link.getAttribute('href');
+            if (href === '#' + currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Throttle scroll event for performance
+    var scrollTimeout;
+    function handleScroll() {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(activateNavLink, 50);
+    }
+
+    // Setup when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            activateNavLink();
+            window.addEventListener('scroll', handleScroll, false);
+        });
+    } else {
+        activateNavLink();
+        window.addEventListener('scroll', handleScroll, false);
+    }
+})();
+
 // Auto-collapse Bootstrap navbar on nav-link or button click (mobile UX)
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
@@ -187,10 +239,18 @@
             }
         }
 
-        // When any nav link is clicked, hide the navbar if it's open
+        // When any nav link is clicked, hide the navbar if it's open and set as active
         var navLinks = document.querySelectorAll('#navbarNav .nav-link');
         navLinks.forEach(function (link) {
-            link.addEventListener('click', function () {
+            link.addEventListener('click', function (e) {
+                // Remove active class from all links
+                navLinks.forEach(function (l) {
+                    l.classList.remove('active');
+                });
+                // Add active class to clicked link
+                link.classList.add('active');
+
+                // Auto-collapse mobile menu
                 if (navbarCollapse.classList.contains('show') && bsCollapse) {
                     bsCollapse.hide();
                 }
