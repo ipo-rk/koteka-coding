@@ -4,7 +4,7 @@
 (function () {
     // CV Data - Customize this with your actual information
     const cvData = {
-        name: "Devp Rick11",
+        name: "Koteka Coding",
         title: "Full Stack Developer",
         email: "rizaldoricky@gmail.com",
         phone: "+62 812 1537 6865",
@@ -31,16 +31,11 @@
         },
 
         experience: [
-            {
-                title: "Senior Web Developer",
-                company: "Tech Company",
-                period: "2022 - Present",
-                description: "Led development of multiple web applications using modern technologies."
-            },
+
             {
                 title: "Web Developer",
                 company: "Digital Agency",
-                period: "2020 - 2022",
+                period: "2020 - 2025",
                 description: "Developed responsive websites and web applications for various clients."
             },
             {
@@ -53,14 +48,14 @@
 
         education: [
             {
-                degree: "Bachelor of Computer Science",
-                school: "University Name",
-                year: "2018"
+                degree: "Sistem Informasi",
+                school: "Universitas Sains dan Teknologi Jayapura",
+                year: "2019 - Present"
             },
             {
-                degree: "Web Development Bootcamp",
-                school: "Coding Academy",
-                year: "2017"
+                degree: "Web Development",
+                school: "SaCode Papua",
+                year: "2023"
             }
         ],
 
